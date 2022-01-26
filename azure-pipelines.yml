@@ -33,4 +33,5 @@ steps:
     versionSpec: ${{ parameters.pythonVersion }}
     addToPath: true
     architecture: 'x64'
+- script: echo '$(python --version) $azpPythonVersion'
 - script: $(script)
