@@ -1,0 +1,35 @@
+parameters:
+- name: pythonVersion
+  default: 3.10.0
+
+strategy:
+  matrix:
+    ubuntu2004:
+      imageName: ubuntu-20.04
+      script: 'if [[ $(python --version) != "Python ${{ parameters.pythonVersion }}" ]]; then exit 1; fi'
+    ubuntu1804:
+      imageName: ubuntu-18.04
+      script: 'if [[ $(python --version) != "Python ${{ parameters.pythonVersion }}" ]]; then exit 1; fi'
+    windows2022:
+      imageName: windows-2022
+      script: 'if ( $(python --version) -ne "Python ${{ parameters.pythonVersion }}" ) { exit 1 }'
+    windows2019:
+      imageName: windows-2019
+      script: 'if ( $(python --version) -ne "Python ${{ parameters.pythonVersion }}" ) { exit 1 }'
+    macos11:
+      imageName: macOS-11
+      script: 'if [[ $(python --version) != "Python ${{ parameters.pythonVersion }}" ]]; then exit 1; fi'
+    macos10:
+      imageName: macOS-10.15
+      script: 'if [[ $(python --version) != "Python ${{ parameters.pythonVersion }}" ]]; then exit 1; fi'
+
+pool:
+  vmImage: $(imageName)
+
+steps:
+- task: UsePythonVersionM@0
+  inputs:
+    versionSpec: ${{ parameters.pythonVersion }}
+    addToPath: true
+    architecture: 'x64'
+- script: $(script)
