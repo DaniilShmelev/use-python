@@ -6,6 +6,7 @@ strategy:
   matrix:
     ubuntu2004:
       imageName: ubuntu-20.04
+      trythis: ${{ parameters.pythonVersion }}
       script: 'if [[ $(python --version) != "Python ${{ parameters.pythonVersion }}" ]]; then exit 1; fi'
     ubuntu1804:
       imageName: ubuntu-18.04
