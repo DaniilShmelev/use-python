@@ -40,4 +40,4 @@ jobs:
       versionSpec: ${{ parameters.pythonVersion }}
       addToPath: true
       architecture: 'x64'
-  - script: 'if ( $(python --version) -ne "Python ${{ parameters.pythonVersion }}" ) { exit 1 }'
+  - powershell: 'if ( $(python --version) -ne "Python ${{ parameters.pythonVersion }}" ) { exit 1 }'
