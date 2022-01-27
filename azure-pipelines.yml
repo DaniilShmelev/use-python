@@ -2,36 +2,42 @@ parameters:
 - name: pythonVersion
   default: 3.10.0
 
-strategy:
-  matrix:
-    ubuntu2004:
-      imageName: ubuntu-20.04
-      script: 'if [[ $(python --version) != "Python $azpPythonVersion" ]]; then exit 1; fi'
-    ubuntu1804:
-      imageName: ubuntu-18.04
-      script: 'if [[ $(python --version) != "Python $azpPythonVersion" ]]; then exit 1; fi'
-    windows2022:
-      imageName: windows-2022
-      script: 'if ( $(python --version) -ne "Python $Env:azpPythonVersion" ) { exit 1 }'
-    windows2019:
-      imageName: windows-2019
-      script: 'if ( $(python --version) -ne "Python $Env:azpPythonVersion" ) { exit 1 }'
-    macos11:
-      imageName: macOS-11
-      script: 'if [[ $(python --version) != "Python $azpPythonVersion" ]]; then exit 1; fi'
-    macos10:
-      imageName: macOS-10.15
-      script: 'if [[ $(python --version) != "Python $azpPythonVersion" ]]; then exit 1; fi'
+jobs:
+- job:
+  displayName: Unix
+  strategy:
+    matrix:
+      ubuntu2004:
+        imageName: ubuntu-20.04
+      ubuntu1804:
+        imageName: ubuntu-18.04
+      macos11:
+        imageName: macOS-11
+      macos10:
+        imageName: macOS-10.15
+  steps:
+  - task: UsePythonVersionM@0
+    inputs:
+      versionSpec: ${{ parameters.pythonVersion }}
+      addToPath: true
+      architecture: 'x64'
+  - script: 'if [[ $(python --version) != "Python ${{ parameters.pythonVersion }}" ]]; then exit 1; fi'
 
-pool:
-  vmImage: $(imageName)
-
-steps:
-- script: 'echo ##vso[task.setvariable variable=azpPythonVersion;isOutput=false;issecret=false;]${{ parameters.pythonVersion }}'
-- task: UsePythonVersionM@0
-  inputs:
-    versionSpec: ${{ parameters.pythonVersion }}
-    addToPath: true
-    architecture: 'x64'
-- script: echo $(python --version) $(azpPythonVersion)
-- script: $(script)
+- job:
+  displayName: Windows
+  dependsOn: []
+  strategy:
+    matrix:
+      windows2022:
+        imageName: windows-2022
+      windows2019:
+        imageName: windows-2019
+  pool:
+    vmImage: $(imageName)
+  steps:
+  - task: UsePythonVersionM@0
+    inputs:
+      versionSpec: ${{ parameters.pythonVersion }}
+      addToPath: true
+      architecture: 'x64'
+  - script: 'if ( $(python --version) -ne "Python ${{ parameters.pythonVersion }}" ) { exit 1 }'
