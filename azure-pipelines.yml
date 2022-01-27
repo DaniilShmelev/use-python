@@ -4,40 +4,50 @@ parameters:
 
 jobs:
 - job:
-  displayName: Unix
-  strategy:
-    matrix:
-      ubuntu2004:
-        imageName: ubuntu-20.04
-      ubuntu1804:
-        imageName: ubuntu-18.04
-      macos11:
-        imageName: macOS-11
-      macos10:
-        imageName: macOS-10.15
-  steps:
-  - task: UsePythonVersionM@0
-    inputs:
-      versionSpec: ${{ parameters.pythonVersion }}
-      addToPath: true
-      architecture: 'x64'
-  - script: 'if [[ $(python --version) != "Python ${{ parameters.pythonVersion }}" ]]; then exit 1; fi'
-
-- job:
-  displayName: Windows
-  dependsOn: []
-  strategy:
-    matrix:
-      windows2022:
-        imageName: windows-2022
-      windows2019:
-        imageName: windows-2019
+  displayName: ubuntu-20.04
   pool:
-    vmImage: $(imageName)
+    vmImage: ubuntu-20.04
   steps:
-  - task: UsePythonVersionM@0
-    inputs:
-      versionSpec: ${{ parameters.pythonVersion }}
-      addToPath: true
-      architecture: 'x64'
-  - powershell: 'if ( $(python --version) -ne "Python ${{ parameters.pythonVersion }}" ) { exit 1 }'
+  - template: ./unix.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
+- job:
+  displayName: ubuntu-18.04
+  pool:
+    vmImage: ubuntu-18.04
+  steps:
+  - template: ./unix.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
+- job:
+  displayName: macOS-11
+  pool:
+    vmImage: macOS-11
+  steps:
+  - template: ./unix.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
+- job:
+  displayName: macOS-10.15
+  pool:
+    vmImage: macOS-10.15
+  steps:
+  - template: ./unix.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
+- job:
+  displayName: windows-2019
+  pool:
+    vmImage: windows-2019
+  steps:
+  - template: ./win.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
+- job:
+  displayName: windows-2022
+  pool:
+    vmImage: windows-2022
+  steps:
+  - template: ./win.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
