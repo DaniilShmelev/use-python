@@ -54,36 +54,36 @@ jobs:
       pythonVersion: ${{ parameters.pythonVersion }}
 
 # Self-hosted
-- job:
-  displayName: self-hosted Windows
-  pool:
-    name: pool
-    demands:
-    - Agent.Name -equals win-default
-  steps:
-  - template: ./win.yml
-    parameters:
-      pythonVersion: ${{ parameters.pythonVersion }}
-- job:
-  displayName: self-hosted Debian
-  pool:
-    name: pool
-    demands:
-    - Agent.Name -equals deb-default
-  steps:
-  - template: ./unix.yml
-    parameters:
-      pythonVersion: ${{ parameters.pythonVersion }}
-- job:
-  displayName: self-hosted fedora
-  pool:
-    name: pool
-    demands:
-    - Agent.Name -equals fed-default
-  steps:
-  - template: ./unix.yml
-    parameters:
-      pythonVersion: ${{ parameters.pythonVersion }}
+# - job:
+#   displayName: self-hosted Windows
+#   pool:
+#     name: pool
+#     demands:
+#     - Agent.Name -equals win-default
+#   steps:
+#   - template: ./win.yml
+#     parameters:
+#       pythonVersion: ${{ parameters.pythonVersion }}
+# - job:
+#   displayName: self-hosted Debian
+#   pool:
+#     name: pool
+#     demands:
+#     - Agent.Name -equals deb-default
+#   steps:
+#   - template: ./unix.yml
+#     parameters:
+#       pythonVersion: ${{ parameters.pythonVersion }}
+# - job:
+#   displayName: self-hosted fedora
+#   pool:
+#     name: pool
+#     demands:
+#     - Agent.Name -equals fed-default
+#   steps:
+#   - template: ./unix.yml
+#     parameters:
+#       pythonVersion: ${{ parameters.pythonVersion }}
 # - job:
 #   displayName: self-hosted opensuse
 #   pool:
@@ -94,13 +94,13 @@ jobs:
 #   - template: ./unix.yml
 #     parameters:
 #       pythonVersion: ${{ parameters.pythonVersion }}
-- job:
-  displayName: self-hosted macos
-  pool:
-    name: pool
-    demands:
-    - Agent.Name -equals mac-default
-  steps:
-  - template: ./unix.yml
-    parameters:
-      pythonVersion: ${{ parameters.pythonVersion }}
+# - job:
+#   displayName: self-hosted macos
+#   pool:
+#     name: pool
+#     demands:
+#     - Agent.Name -equals mac-default
+#   steps:
+#   - template: ./unix.yml
+#     parameters:
+#       pythonVersion: ${{ parameters.pythonVersion }}
