@@ -1,11 +1,14 @@
 parameters:
 - name: pythonVersion
   type: string
+- name: allowUnstable
+  type: boolean
 
 steps:
 - task: UsePythonVersionM@0
   inputs:
     versionSpec: ${{ parameters.pythonVersion }}
+    allowUnstable: ${{ parameters.allowUnstable }}
     addToPath: true
     architecture: 'x64'
 - script: 'if [[ $(python --version) != "Python ${{ parameters.pythonVersion }}" ]]; then exit 1; fi'

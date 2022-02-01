@@ -1,6 +1,8 @@
 parameters:
 - name: pythonVersion
   default: 3.10.0
+- name: allowUnstable
+  default: false
 
 jobs:
 # MS-hosted
@@ -12,6 +14,7 @@ jobs:
   - template: ./unix.yml
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
+      allowUnstable: ${{ parameters.allowUnstable }}
 - job:
   displayName: ubuntu-18.04
   pool:
@@ -20,6 +23,7 @@ jobs:
   - template: ./unix.yml
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
+      allowUnstable: ${{ parameters.allowUnstable }}
 - job:
   displayName: macOS-11
   pool:
@@ -28,6 +32,7 @@ jobs:
   - template: ./unix.yml
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
+      allowUnstable: ${{ parameters.allowUnstable }}
 - job:
   displayName: macOS-10.15
   pool:
@@ -36,6 +41,7 @@ jobs:
   - template: ./unix.yml
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
+      allowUnstable: ${{ parameters.allowUnstable }}
 - job:
   displayName: windows-2019
   pool:
@@ -44,6 +50,7 @@ jobs:
   - template: ./win.yml
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
+      allowUnstable: ${{ parameters.allowUnstable }}
 - job:
   displayName: windows-2022
   pool:
@@ -52,6 +59,7 @@ jobs:
   - template: ./win.yml
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
+      allowUnstable: ${{ parameters.allowUnstable }}
 
 # Self-hosted
 # - job:
@@ -64,6 +72,7 @@ jobs:
 #   - template: ./win.yml
 #     parameters:
 #       pythonVersion: ${{ parameters.pythonVersion }}
+#       allowUnstable: ${{ parameters.allowUnstable }}
 # - job:
 #   displayName: self-hosted Debian
 #   pool:
@@ -74,6 +83,7 @@ jobs:
 #   - template: ./unix.yml
 #     parameters:
 #       pythonVersion: ${{ parameters.pythonVersion }}
+#       allowUnstable: ${{ parameters.allowUnstable }}
 # - job:
 #   displayName: self-hosted fedora
 #   pool:
@@ -84,6 +94,7 @@ jobs:
 #   - template: ./unix.yml
 #     parameters:
 #       pythonVersion: ${{ parameters.pythonVersion }}
+#       allowUnstable: ${{ parameters.allowUnstable }}
 # - job:
 #   displayName: self-hosted opensuse
 #   pool:
@@ -94,6 +105,7 @@ jobs:
 #   - template: ./unix.yml
 #     parameters:
 #       pythonVersion: ${{ parameters.pythonVersion }}
+#       allowUnstable: ${{ parameters.allowUnstable }}
 # - job:
 #   displayName: self-hosted macos
 #   pool:
@@ -104,3 +116,4 @@ jobs:
 #   - template: ./unix.yml
 #     parameters:
 #       pythonVersion: ${{ parameters.pythonVersion }}
+#       allowUnstable: ${{ parameters.allowUnstable }}
