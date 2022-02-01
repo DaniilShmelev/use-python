@@ -11,5 +11,5 @@ steps:
     allowUnstable: ${{ parameters.allowUnstable }}
     addToPath: true
     architecture: 'x64'
-- script: 'if [[ $(python --version) != "Python ${{ parameters.pythonVersion }}" ]]; then exit 1; fi'
 - script: python --version
+- script: 'if [[ $(python --version) != "Python ${{ parameters.pythonVersion }}" ]]; then exit 1; fi'

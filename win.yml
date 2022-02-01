@@ -11,5 +11,5 @@ steps:
     allowUnstable: ${{ parameters.allowUnstable }}
     addToPath: true
     architecture: 'x64'
-- powershell: 'if ( $(python --version) -ne "Python ${{ parameters.pythonVersion }}" ) { exit 1 }'
 - powershell: echo $(python --version)
+- powershell: 'if ( $(python --version) -ne "Python ${{ parameters.pythonVersion }}" ) { exit 1 }'
