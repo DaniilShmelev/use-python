@@ -3,6 +3,8 @@ parameters:
   default: 3.10.0
 - name: allowUnstable
   default: false
+- name: arch
+  default: 'x64'
 
 jobs:
 # MS-hosted
@@ -15,6 +17,7 @@ jobs:
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
       allowUnstable: ${{ parameters.allowUnstable }}
+      arch: ${{ parameters.arch }}
 - job:
   displayName: ubuntu-18.04
   pool:
@@ -24,6 +27,7 @@ jobs:
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
       allowUnstable: ${{ parameters.allowUnstable }}
+      arch: ${{ parameters.arch }}
 - job:
   displayName: macOS-11
   pool:
@@ -33,6 +37,7 @@ jobs:
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
       allowUnstable: ${{ parameters.allowUnstable }}
+      arch: ${{ parameters.arch }}
 - job:
   displayName: macOS-10.15
   pool:
@@ -42,6 +47,7 @@ jobs:
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
       allowUnstable: ${{ parameters.allowUnstable }}
+      arch: ${{ parameters.arch }}
 - job:
   displayName: windows-2019
   pool:
@@ -51,6 +57,7 @@ jobs:
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
       allowUnstable: ${{ parameters.allowUnstable }}
+      arch: ${{ parameters.arch }}
 - job:
   displayName: windows-2022
   pool:
@@ -60,6 +67,7 @@ jobs:
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
       allowUnstable: ${{ parameters.allowUnstable }}
+      arch: ${{ parameters.arch }}
 
 # Self-hosted
 # - job:
@@ -73,6 +81,7 @@ jobs:
 #     parameters:
 #       pythonVersion: ${{ parameters.pythonVersion }}
 #       allowUnstable: ${{ parameters.allowUnstable }}
+#       arch: ${{ parameters.arch }}
 # - job:
 #   displayName: self-hosted Debian
 #   pool:
@@ -84,6 +93,7 @@ jobs:
 #     parameters:
 #       pythonVersion: ${{ parameters.pythonVersion }}
 #       allowUnstable: ${{ parameters.allowUnstable }}
+#       arch: ${{ parameters.arch }}
 # - job:
 #   displayName: self-hosted fedora
 #   pool:
@@ -95,6 +105,7 @@ jobs:
 #     parameters:
 #       pythonVersion: ${{ parameters.pythonVersion }}
 #       allowUnstable: ${{ parameters.allowUnstable }}
+#       arch: ${{ parameters.arch }}
 # - job:
 #   displayName: self-hosted opensuse
 #   pool:
@@ -106,6 +117,7 @@ jobs:
 #     parameters:
 #       pythonVersion: ${{ parameters.pythonVersion }}
 #       allowUnstable: ${{ parameters.allowUnstable }}
+#       arch: ${{ parameters.arch }}
 # - job:
 #   displayName: self-hosted macos
 #   pool:
@@ -117,3 +129,4 @@ jobs:
 #     parameters:
 #       pythonVersion: ${{ parameters.pythonVersion }}
 #       allowUnstable: ${{ parameters.allowUnstable }}
+#       arch: ${{ parameters.arch }}

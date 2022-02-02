@@ -3,6 +3,8 @@ parameters:
   type: string
 - name: allowUnstable
   type: boolean
+- name: arch
+  type: string
 
 steps:
 - task: UsePythonVersionM@0
@@ -10,6 +12,6 @@ steps:
     versionSpec: ${{ parameters.pythonVersion }}
     allowUnstable: ${{ parameters.allowUnstable }}
     addToPath: true
-    architecture: 'x64'
+    architecture: ${{ parameters.arch }}
 - powershell: echo $(python --version)
 - powershell: 'if ( $(python --version) -ne "Python ${{ parameters.pythonVersion }}" ) { exit 1 }'
