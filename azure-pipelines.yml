@@ -74,8 +74,6 @@ jobs:
   displayName: self-hosted ubuntu
   pool:
     name: pool
-    demands:
-    - Agent.Name -equals ubuntu20.04wsl
   steps:
   - template: ./unix.yml
     parameters:
