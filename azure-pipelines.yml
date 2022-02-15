@@ -70,16 +70,16 @@ jobs:
 #       arch: ${{ parameters.arch }}
 
 # Self-hosted
-# - job:
-#   displayName: self-hosted ubuntu
-#   pool:
-#     name: pool
-#   steps:
-#   - template: ./unix.yml
-#     parameters:
-#       pythonVersion: ${{ parameters.pythonVersion }}
-#       allowUnstable: ${{ parameters.allowUnstable }}
-#       arch: ${{ parameters.arch }}
+- job:
+  displayName: self-hosted ubuntu
+  pool:
+    name: pool
+  steps:
+  - template: ./unix.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
+      allowUnstable: ${{ parameters.allowUnstable }}
+      arch: ${{ parameters.arch }}
 # - job:
 #   displayName: self-hosted Windows
 #   pool:
@@ -128,15 +128,15 @@ jobs:
 #       pythonVersion: ${{ parameters.pythonVersion }}
 #       allowUnstable: ${{ parameters.allowUnstable }}
 #       arch: ${{ parameters.arch }}
-- job:
-  displayName: self-hosted macos
-  pool:
-    name: pool
-    demands:
-    - Agent.Name -equals macos-as-runner
-  steps:
-  - template: ./unix.yml
-    parameters:
-      pythonVersion: ${{ parameters.pythonVersion }}
-      allowUnstable: ${{ parameters.allowUnstable }}
-      arch: ${{ parameters.arch }}
+# - job:
+#   displayName: self-hosted macos
+#   pool:
+#     name: pool
+#     demands:
+#     - Agent.Name -equals macos-as-runner
+#   steps:
+#   - template: ./unix.yml
+#     parameters:
+#       pythonVersion: ${{ parameters.pythonVersion }}
+#       allowUnstable: ${{ parameters.allowUnstable }}
+#       arch: ${{ parameters.arch }}
