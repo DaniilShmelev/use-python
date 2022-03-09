@@ -8,80 +8,86 @@ parameters:
 
 jobs:
 # MS-hosted
-# - job:
-#   displayName: ubuntu-20.04
-#   pool:
-#     vmImage: ubuntu-20.04
-#   steps:
-#   - template: ./unix.yml
-#     parameters:
-#       pythonVersion: ${{ parameters.pythonVersion }}
-#       allowUnstable: ${{ parameters.allowUnstable }}
-#       arch: ${{ parameters.arch }}
-# - job:
-#   displayName: ubuntu-18.04
-#   pool:
-#     vmImage: ubuntu-18.04
-#   steps:
-#   - template: ./unix.yml
-#     parameters:
-#       pythonVersion: ${{ parameters.pythonVersion }}
-#       allowUnstable: ${{ parameters.allowUnstable }}
-#       arch: ${{ parameters.arch }}
-# - job:
-#   displayName: macOS-11
-#   pool:
-#     vmImage: macOS-11
-#   steps:
-#   - template: ./unix.yml
-#     parameters:
-#       pythonVersion: ${{ parameters.pythonVersion }}
-#       allowUnstable: ${{ parameters.allowUnstable }}
-#       arch: ${{ parameters.arch }}
-# - job:
-#   displayName: macOS-10.15
-#   pool:
-#     vmImage: macOS-10.15
-#   steps:
-#   - template: ./unix.yml
-#     parameters:
-#       pythonVersion: ${{ parameters.pythonVersion }}
-#       allowUnstable: ${{ parameters.allowUnstable }}
-#       arch: ${{ parameters.arch }}
-# - job:
-#   displayName: windows-2019
-#   pool:
-#     vmImage: windows-2019
-#   steps:
-#   - template: ./win.yml
-#     parameters:
-#       pythonVersion: ${{ parameters.pythonVersion }}
-#       allowUnstable: ${{ parameters.allowUnstable }}
-#       arch: ${{ parameters.arch }}
-# - job:
-#   displayName: windows-2022
-#   pool:
-#     vmImage: windows-2022
-#   steps:
-#   - template: ./win.yml
-#     parameters:
-#       pythonVersion: ${{ parameters.pythonVersion }}
-#       allowUnstable: ${{ parameters.allowUnstable }}
-#       arch: ${{ parameters.arch }}
-
-# Self-hosted
 - job:
-  displayName: self-hosted ubuntu
+  displayName: ubuntu-20.04
   pool:
-    name: pool
-    demands:
-    - Agent.Name -equals ubuntu20.04wsl
+    vmImage: ubuntu-20.04
   steps:
   - template: ./unix.yml
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
       allowUnstable: ${{ parameters.allowUnstable }}
       arch: ${{ parameters.arch }}
+      githubToken: $(goken)
+- job:
+  displayName: ubuntu-18.04
+  pool:
+    vmImage: ubuntu-18.04
+  steps:
+  - template: ./unix.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
+      allowUnstable: ${{ parameters.allowUnstable }}
+      arch: ${{ parameters.arch }}
+      githubToken: $(goken)
+- job:
+  displayName: macOS-11
+  pool:
+    vmImage: macOS-11
+  steps:
+  - template: ./unix.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
+      allowUnstable: ${{ parameters.allowUnstable }}
+      arch: ${{ parameters.arch }}
+      githubToken: $(goken)
+- job:
+  displayName: macOS-10.15
+  pool:
+    vmImage: macOS-10.15
+  steps:
+  - template: ./unix.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
+      allowUnstable: ${{ parameters.allowUnstable }}
+      arch: ${{ parameters.arch }}
+      githubToken: $(goken)
+- job:
+  displayName: windows-2019
+  pool:
+    vmImage: windows-2019
+  steps:
+  - template: ./win.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
+      allowUnstable: ${{ parameters.allowUnstable }}
+      arch: ${{ parameters.arch }}
+      githubToken: $(goken)
+- job:
+  displayName: windows-2022
+  pool:
+    vmImage: windows-2022
+  steps:
+  - template: ./win.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
+      allowUnstable: ${{ parameters.allowUnstable }}
+      arch: ${{ parameters.arch }}
+      githubToken: $(goken)
+
+# Self-hosted
+# - job:
+#   displayName: self-hosted ubuntu
+#   pool:
+#     name: pool
+#     demands:
+#     - Agent.Name -equals ubuntu20.04wsl
+#   steps:
+#   - template: ./unix.yml
+#     parameters:
+#       pythonVersion: ${{ parameters.pythonVersion }}
+#       allowUnstable: ${{ parameters.allowUnstable }}
+#       arch: ${{ parameters.arch }}
 # - job:
 #   displayName: self-hosted Windows
 #   pool:

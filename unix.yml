@@ -5,6 +5,8 @@ parameters:
   type: boolean
 - name: arch
   type: string
+- name: githubToken
+  type: string
 
 steps:
 - task: UsePythonVersionM@0
@@ -13,5 +15,6 @@ steps:
     allowUnstable: ${{ parameters.allowUnstable }}
     addToPath: true
     architecture: ${{ parameters.arch }}
+    githubToken: ${{ parameters.githubToken }}
 - script: python --version
 - script: 'if [[ $(python --version) != "Python ${{ parameters.pythonVersion }}" ]]; then exit 1; fi'
