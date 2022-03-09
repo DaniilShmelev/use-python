@@ -141,7 +141,7 @@ jobs:
 #   pool:
 #     name: pool
 #     demands:
-#     - Agent.Name -equals mac-default
+#     - Agent.Name -equals macos-as-runner
 #   steps:
 #   - template: ./unix.yml
 #     parameters:
