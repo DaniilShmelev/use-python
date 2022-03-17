@@ -1,6 +1,8 @@
 parameters:
 - name: pythonVersion
   default: 3.10.0
+- name: disableDownloadFromRegistry
+  default: false
 - name: allowUnstable
   default: false
 - name: arch
@@ -16,6 +18,7 @@ jobs:
   - template: ./unix.yml
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
+      disableDownloadFromRegistry: ${{ parameters.disableDownloadFromRegistry }}
       allowUnstable: ${{ parameters.allowUnstable }}
       arch: ${{ parameters.arch }}
       githubToken: $(goken)
@@ -27,17 +30,7 @@ jobs:
   - template: ./unix.yml
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
-      allowUnstable: ${{ parameters.allowUnstable }}
-      arch: ${{ parameters.arch }}
-      githubToken: $(goken)
-- job:
-  displayName: macOS-11
-  pool:
-    vmImage: macOS-11
-  steps:
-  - template: ./unix.yml
-    parameters:
-      pythonVersion: ${{ parameters.pythonVersion }}
+      disableDownloadFromRegistry: ${{ parameters.disableDownloadFromRegistry }}
       allowUnstable: ${{ parameters.allowUnstable }}
       arch: ${{ parameters.arch }}
       githubToken: $(goken)
@@ -49,6 +42,19 @@ jobs:
   - template: ./unix.yml
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
+      disableDownloadFromRegistry: ${{ parameters.disableDownloadFromRegistry }}
+      allowUnstable: ${{ parameters.allowUnstable }}
+      arch: ${{ parameters.arch }}
+      githubToken: $(goken)
+- job:
+  displayName: macOS-11
+  pool:
+    vmImage: macOS-11
+  steps:
+  - template: ./unix.yml
+    parameters:
+      pythonVersion: ${{ parameters.pythonVersion }}
+      disableDownloadFromRegistry: ${{ parameters.disableDownloadFromRegistry }}
       allowUnstable: ${{ parameters.allowUnstable }}
       arch: ${{ parameters.arch }}
       githubToken: $(goken)
@@ -60,6 +66,7 @@ jobs:
   - template: ./win.yml
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
+      disableDownloadFromRegistry: ${{ parameters.disableDownloadFromRegistry }}
       allowUnstable: ${{ parameters.allowUnstable }}
       arch: ${{ parameters.arch }}
       githubToken: $(goken)
@@ -71,6 +78,7 @@ jobs:
   - template: ./win.yml
     parameters:
       pythonVersion: ${{ parameters.pythonVersion }}
+      disableDownloadFromRegistry: ${{ parameters.disableDownloadFromRegistry }}
       allowUnstable: ${{ parameters.allowUnstable }}
       arch: ${{ parameters.arch }}
       githubToken: $(goken)
